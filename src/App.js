@@ -11,7 +11,7 @@ function App() {
 
   const getMovies = async text => {
     const res = await axios.get(
-      `http://www.omdbapi.com/?s=${text}&apikey=c8d3ec5b`
+      `https://www.omdbapi.com/?s=${text}&apikey=c8d3ec5b`
     )
 
     setMovies(res.data.Search)

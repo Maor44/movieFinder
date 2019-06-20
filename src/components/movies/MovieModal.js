@@ -7,7 +7,7 @@ const MovieModal = ({ handleClose, show, children, movieId }) => {
 
   const getData = async () => {
     const res = await axios.get(
-      `http://www.omdbapi.com/?i=${movieId}&apikey=c8d3ec5b`
+      `https://www.omdbapi.com/?i=${movieId}&apikey=c8d3ec5b`
     )
 
     setData(res.data)
