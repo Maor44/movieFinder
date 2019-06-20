@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import axios from 'axios'
+
+import './App.css'
+
+import Search from './components/layout/Search'
+import Movies from './components/movies/Movies'
 
 function App() {
+  const [movies, setMovies] = useState([])
+
+  const getMovies = async text => {
+    const res = await axios.get(
+      `http://www.omdbapi.com/?s=${text}&apikey=c8d3ec5b`
+    )
+
+    setMovies(res.data.Search)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <Search getMovies={getMovies} />
+        {movies && <Movies movies={movies} />}
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
